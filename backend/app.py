@@ -24,9 +24,13 @@ class EchoMessage(BaseModel):
 def hello():
     return {"message": "FastAPI hello!"}
 
+# @app.get("/api/hello")
+# def hello_world():
+#     return {"message": "Hello World by FastAPI"}
+
 @app.get("/api/hello")
 def hello_world():
-    return {"message": "Hello World by FastAPI"}
+    return {"message": "Hello! Kuboshi"}
 
 @app.get("/api/multiply/{id}")
 def multiply(id: int):
@@ -46,13 +50,21 @@ def echo(message: EchoMessage):
 # Must課題②-1【割り算API】フロントエンドから送られた数値を2で割ってレスポンスするエンドポイントを以下に作成してください
 # 【注意！】この課題は生成AIを使わずにトライください！（上記の既存エンドポイントをアレンジしてみてください）
 # 整数は「int(*integer)」型、文字列は「str(*string)」型になります
-
+@app.get("/api/half/{id}")
+def half(id: int):
+    print("half")
+    half_value = id / 2
+    return {"half_value": half_value}
 
 # Want課題①-1【文字数カウントAPI】フロントエンドから送られた文字列をカウントしてレスポンスするエンドポイントを以下に作成してください
 # 【注意！】この課題は生成AIを使わずにトライください！（上記の既存エンドポイントをアレンジしてみてください）
 # 整数は「int(*integer)」型、文字列は「str(*string)」型になります
 # 文字数のカウントは、len関数でカウントできます *例:text_length = len(カウントしたい文字列)
-
+@app.get("/api/count/{text}")
+def count(text: str):
+    print("count")
+    text_length = len(text)
+    return {"text_length": text_length}
 
 # 超Want課題①【HTMLをレスポンスする】backendフォルダ直下のindex.htmlをレスポンスするエンドポイントを以下に作成してください
 # Jinja2Templatesライブラリを使うと便利です
